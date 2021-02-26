@@ -1,8 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useState} from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Task from './components/Task'
+
 export default function App() {
+  const [task, setTask] = useState()
+  const [taskItem, setTaskItem] = useState([])
+  const handleAddTask = () => {
+    setTaskItem([...taskItem, task])
+    setTask(null)
+  }
+
   return (
     <View style={styles.container}>
 
@@ -14,9 +21,9 @@ export default function App() {
       </Text>
 
         <View style={styles.items}>
-          <Task text='task 1'/>   
-          <Task text='task 2'/> 
-          <Task text='task 3'/> 
+         {taskItem.map((item)=> {
+             return <Task text={item} />
+         })}
         </View>
       </View>
 
@@ -24,9 +31,11 @@ export default function App() {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.writeTaskWrapper}
       >
-        <TextInput style={styles.input} placeholder={'Write a Task'} />
+        <TextInput style={styles.input} placeholder={'Write a Task'}
+          value={task} onChangeText={text => setTask(text)}
+        />
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={ () => handleAddTask()}>
           <View style={styles.addWrapper}>
             <Text style={styles.addText}>+</Text>
           </View>
