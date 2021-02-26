@@ -5,10 +5,17 @@ import Task from './components/Task'
 export default function App() {
   const [task, setTask] = useState()
   const [taskItem, setTaskItem] = useState([])
+
   const handleAddTask = () => {
     Keyboard.dismiss()
     setTaskItem([...taskItem, task])
     setTask(null)
+  }
+
+  const completeTask = (index) => {
+    let itemsCopy = [...taskItem]
+    itemsCopy.splice(index, 1)
+    setTaskItem(itemsCopy)
   }
 
   return (
@@ -23,7 +30,9 @@ export default function App() {
 
         <View style={styles.items}>
          {taskItem.map((item, index)=> {
-             return <Task key={index} text={item} />
+              return <TouchableOpacity key={index} onPress={() => completeTask()}>
+                <Task  text={item} />
+              </TouchableOpacity>
          })}
         </View>
       </View>
