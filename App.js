@@ -17,9 +17,6 @@ export default function App() {
           <Task text='task 1'/>   
           <Task text='task 2'/> 
           <Task text='task 3'/> 
-          <Task text='task 4'/> 
-          <Task text='task 5'/> 
-          <Task text='task 6'/> 
         </View>
       </View>
 
@@ -31,7 +28,7 @@ export default function App() {
 
         <TouchableOpacity>
           <View style={styles.addWrapper}>
-            <Text style={styles.addText}></Text>
+            <Text style={styles.addText}>+</Text>
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -59,7 +56,7 @@ const styles = StyleSheet.create({
     bottom: 40,
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-around'
   }, 
   input: {
     paddingVertical: 15,
@@ -68,7 +65,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     borderRadius: 60,
     borderColor: '#C0C0C0',
+    borderWidth: 1,
     width: 250,
-    borderWidth: 1
+  },
+  addWrapper: {
+    height: 60,
+    width: 60,
+    backgroundColor: 'white',
+    borderRadius: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#C0C0C0',
+    borderWidth: 1,
   }
 });
